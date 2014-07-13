@@ -17,18 +17,19 @@ my %gets = (
   "RGB"           => 1,
   "pct"           => 1,
 #  "devStateIcon"  => 0,
+  "flash"         => 1,
 );
 
 my %sets = (
   "on"                  => 0,
   "off"                 => 0,
   "toggle"              => 0,
-  "flash"               => 1,
   "rgb:colorpicker,RGB" => 1,
   "pct:slider,0,1,255"  => 1,
 #  "fadeTo"              => 2,
 #  "dimUp"               => 0,
 #  "dimDown"             => 0,
+  "flash:slider,0,1,255" => 1,
 );
 
 
@@ -182,7 +183,7 @@ sub DMXDevice_Set($@)
   } elsif ($cmd eq "flash") {
     @channels = @{$hash->{helper}{channels}{m}};
     @values = ($raw_value);
-    readingsSingleUpdate($hash, "flash", $raw_value, 0);
+    readingsSingleUpdate($hash, "flash", $raw_value, 1);
   }
 
   # a named array where keys are channel numbers and values calues
