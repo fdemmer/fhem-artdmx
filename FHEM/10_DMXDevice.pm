@@ -153,26 +153,31 @@ sub DMXDevice_Set($@)
   my @values = ();
   my @channels = ();
 
+  # color of rgba device
   if ($cmd eq "rgb") {
     @channels = @{$hash->{helper}{channels}{rgb}};
     @values = RgbToChannels($raw_value, 3);
     readingsSingleUpdate($hash, "rgb", $raw_value, 0);
 
+  # brightness of rgba device or absolute value of simple device
   } elsif ($cmd eq "pct") {
     @channels = @{$hash->{helper}{channels}{a}};
     @values = ($raw_value);
     readingsSingleUpdate($hash, "pct", $raw_value, 0);
 
+  # restore previous brightness of rgba or absolute value of simple device
   } elsif ($cmd eq "on") {
     @channels = @{$hash->{helper}{channels}{a}};
     @values = (10); #TODO "on" value...?!
     readingsSingleUpdate($hash, "pct", 10, 0); #TODO "on" value...?!
 
+  # set brightness or absolute value of simple device to zero
   } elsif ($cmd eq "off") {
     @channels = @{$hash->{helper}{channels}{a}};
     @values = (0);
     readingsSingleUpdate($hash, "pct", 0, 0);
 
+  # flashing rate/mode of flash device (not valid for simple and rgba)
   } elsif ($cmd eq "flash") {
     @channels = @{$hash->{helper}{channels}{b}};
     @values = ($raw_value);
