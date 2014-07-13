@@ -15,8 +15,7 @@ use Color;
 my %gets = (
   "rgb"           => 1,
   "RGB"           => 1,
-  "pct"           => 1,
-#  "devStateIcon"  => 0,
+  "dim"           => 1,
   "flash"         => 1,
 );
 
@@ -25,10 +24,7 @@ my %sets = (
   "off"                 => 0,
   "toggle"              => 0,
   "rgb:colorpicker,RGB" => 1,
-  "pct:slider,0,1,255"  => 1,
-#  "fadeTo"              => 2,
-#  "dimUp"               => 0,
-#  "dimDown"             => 0,
+  "dim:slider,0,1,255"  => 1,
   "flash:slider,0,1,255" => 1,
 );
 
@@ -161,23 +157,23 @@ sub DMXDevice_Set($@)
     readingsSingleUpdate($hash, "rgb", $raw_value, 0);
 
   # brightness of rgba device or absolute value of simple device
-  } elsif ($cmd eq "pct") {
+  } elsif ($cmd eq "dim") {
     @channels = @{$hash->{helper}{channels}{a}};
     @values = ($raw_value);
-    readingsSingleUpdate($hash, "pct", $raw_value, 0);
+    readingsSingleUpdate($hash, "dim", $raw_value, 1);
 
   # restore previous brightness of rgba or absolute value of simple device
   } elsif ($cmd eq "on") {
     @channels = @{$hash->{helper}{channels}{a}};
-    @values = (ReadingsVal($name, "pct_prev", 0));
-    readingsSingleUpdate($hash, "pct", ReadingsVal($name, "pct_prev", 0), 0);
+    @values = (ReadingsVal($name, "dim_prev", 0));
+    readingsSingleUpdate($hash, "dim", ReadingsVal($name, "dim_prev", 0), 1);
 
   # set brightness or absolute value of simple device to zero
   } elsif ($cmd eq "off") {
     @channels = @{$hash->{helper}{channels}{a}};
     @values = (0);
-    readingsSingleUpdate($hash, "pct_prev", ReadingsVal($name, "pct", 0), 0);
-    readingsSingleUpdate($hash, "pct", 0, 0);
+    readingsSingleUpdate($hash, "dim_prev", ReadingsVal($name, "dim", 0), 0);
+    readingsSingleUpdate($hash, "dim", 0, 1);
 
   # flashing rate/mode of flash device (not valid for simple and rgba)
   } elsif ($cmd eq "flash") {
