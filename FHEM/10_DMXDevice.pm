@@ -14,7 +14,6 @@ use Color;
 
 my %gets = (
   "rgb"           => 1,
-  "RGB"           => 1,
   "dim"           => 1,
   "flash"         => 1,
 );
@@ -154,7 +153,7 @@ sub DMXDevice_Set($@)
   if ($cmd eq "rgb") {
     @channels = @{$hash->{helper}{channels}{rgb}};
     @values = RgbToChannels($raw_value, 3);
-    readingsSingleUpdate($hash, "rgb", $raw_value, 0);
+    readingsSingleUpdate($hash, "RGB", $raw_value, 1);
 
   # brightness of rgba device or absolute value of simple device
   } elsif ($cmd eq "dim") {
