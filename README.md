@@ -52,14 +52,17 @@ Define a DMXBridge using the ArtNet device as IO device:
     define DMX0 DMXBridge
     attr DMX0 IODev ArtNet0
 
-Finally define one or more DMXDevices:
+Finally define one or more DMXDevices, for example with three RGB channels and
+one for brightness:
 
     define LED1 DMXDevice rgba 13,12,11,15
     attr LED1 IODev DMX0
     attr LED1 webCmd rgb:rgb ff0000:rgb 00ff00:rgb 0000ff:pct:on:off
 
+or white flashing LEDs where one channel is again brightness and a second the
+flash rate:
+
     define LED2 DMXDevice flash 14,16
     attr LED2 IODev DMX0
-    #attr LED2 devStateIcon {(DMXDevice_devStateIcon($name),"toggle")}
     attr LED2 webCmd pct:on:off
 
