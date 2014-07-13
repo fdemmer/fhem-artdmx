@@ -57,12 +57,12 @@ one for brightness:
 
     define LED1 DMXDevice rgba 13,12,11,15
     attr LED1 IODev DMX0
-    attr LED1 webCmd rgb:rgb ff0000:rgb 00ff00:rgb 0000ff:pct:on:off
+    attr LED1 webCmd rgb:rgb ff0000:rgb 00ff00:rgb 0000ff:dim:on:off
 
 or white flashing LEDs where one channel is again brightness and a second the
 flash rate:
 
     define LED2 DMXDevice flash 14,16
     attr LED2 IODev DMX0
-    attr LED2 webCmd pct:on:off
+    attr LED2 webCmd dim:flash:on:off
 
