@@ -98,7 +98,7 @@ sub DMXDevice_Define($$)
   } elsif ($device eq "flash"){
     Log3 undef, 1, "DMXDevice: is FLASH device";
     @{$hash->{helper}{channels}{a}} = ($c[0]);
-    @{$hash->{helper}{channels}{b}} = ($c[1]);
+    @{$hash->{helper}{channels}{m}} = ($c[1]);
   } elsif ($device eq "simple"){
     Log3 undef, 1, "DMXDevice: is SIMPLE device";
     @{$hash->{helper}{channels}{a}} = ($c[0]);
@@ -179,7 +179,7 @@ sub DMXDevice_Set($@)
 
   # flashing rate/mode of flash device (not valid for simple and rgba)
   } elsif ($cmd eq "flash") {
-    @channels = @{$hash->{helper}{channels}{b}};
+    @channels = @{$hash->{helper}{channels}{m}};
     @values = ($raw_value);
     readingsSingleUpdate($hash, "flash", $raw_value, 0);
   }
