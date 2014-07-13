@@ -186,14 +186,14 @@ sub DMXDevice_Set($@)
   }
 
   # a named array where keys are channel numbers and values calues
-  # it is not stored, the data only is written to the dmx bridge
-  # however the state of the channels is saved in the readings
+  # it is not stored, the data only is written to the dmx bridge.
+  # however, the state is saved in the readings.
   my %data;
 
   foreach my $channel (@channels) {
     my $value = shift @values;
     $data{$channel} = $value;
-    Log3 undef, 1, "DMXDevice: set-rgb: $channel = $value";
+    Log3 undef, 1, "DMXDevice: setting channel $channel = $value";
   }
  
   IOWrite($hash, $hash->{NAME}, %data);
