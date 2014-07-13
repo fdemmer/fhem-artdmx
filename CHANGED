@@ -1,2 +1,7 @@
 - 2014-03-21 (0.1)
   - initial release
+
+- 2014-06-13 (0.2)
+  - restore value on on/off
+  - add slider for flash mode
+  - send notification on readings updates
