@@ -168,13 +168,14 @@ sub DMXDevice_Set($@)
   # restore previous brightness of rgba or absolute value of simple device
   } elsif ($cmd eq "on") {
     @channels = @{$hash->{helper}{channels}{a}};
-    @values = (10); #TODO "on" value...?!
-    readingsSingleUpdate($hash, "pct", 10, 0); #TODO "on" value...?!
+    @values = (ReadingsVal($name, "pct_prev", 0));
+    readingsSingleUpdate($hash, "pct", ReadingsVal($name, "pct_prev", 0), 0);
 
   # set brightness or absolute value of simple device to zero
   } elsif ($cmd eq "off") {
     @channels = @{$hash->{helper}{channels}{a}};
     @values = (0);
+    readingsSingleUpdate($hash, "pct_prev", ReadingsVal($name, "pct", 0), 0);
     readingsSingleUpdate($hash, "pct", 0, 0);
 
   # flashing rate/mode of flash device (not valid for simple and rgba)
