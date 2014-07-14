@@ -237,11 +237,73 @@ sub DMXDevice_Get($@)
 =pod
 =begin html
 
-<a name="DMX Device"></a>
+<a name="DMXDevice"></a>
 <h3>DMX Device</h3>
 <ul>
- ...
+    A DMX device is a device controlled by a <a href="#Artnet">Artnet Controller</a> via the DMX512 protocol.<br><br>
+
+    <a name="DMXDevicedefine"><b>Define</b></a>
+    <ul>
+        <code>define &lt;name&gt; DMXDevice &lt;devicetype&gt; &lt;channels&gt;</code><br>
+        <br>
+        Devicetypes can be:
+        <li><b>rgba:</b> a RGB device</li>
+        <li><b>flash:</b> a white flashing device</li>
+        <li><b>simple:</b> a 1 channel device</li>
+    Examples:
+    <ul>
+        <code>define LED1 DMXDevice rgba 13,12,11,15</code> RGB device with three channels and one for brightness<br>
+        <code>define LED2 DMXDevice flash 14,16</code> white flashing LEDs where one channel is again brightness and a second the flash rate<br>
+        <code>define test1 DMXDevice simple 5</code> simple device with one channel<br>
+    </ul>
+    </ul><br>
+    <a name="DMXDeviceattributes"><b>Attributes</b></a>
+    <ul>
+        <li>IODev<br>
+          <code>attr LED1 IODev DMX0</code><br> defines the <a href="IODev">IODev</a> for the device</li>
+        <li>webCMD<br>
+          <code>attr LED1 webCmd rgb:rgb ff0000:rgb 00ff00:rgb 0000ff:dim:on:off</code><br> defines a rgb color picker, 3 color buttons and on / off switches<br>
+          -or-<br>
+          <code>attr LED2 webCmd dim:flash:on:off</code> defines a flash device with on / off buttons
+    </ul>
+
+
 </ul>
 
+=end html
+=begin html_DE
+
+<a name="DMXDevice"></a>
+<h3>DMX Device</h3>
+<ul>
+    Ein DMX Device ist ein Ger&auml;t, das von einem <a href="#Artnet">Artnet Controller</a> mit dem DMX512 Protokoll gesteuert wird.<br>
+
+    <a name="DMXDevicedefine"><b>Define</b></a>
+    <ul>
+        <code>define &lt;name&gt; DMXDevice &lt;devicetype&gt; &lt;channels&gt;</code><br>
+        <br>
+        Devicetypen k&ouml;nnen sein:
+        <li><b>rgba:</b> ein RGB device</li>
+        <li><b>flash:</b> einfarbige Lampen die blinken</li>
+        <li><b>simple:</b> ein Einkanal Ger&auml;t</li>
+    Beispiele:
+    <ul>
+        <code>define LED1 DMXDevice rgba 13,12,11,15</code> RGB Gerauml;t mit 3 Kan&auml;len und einem Kanal f&uuml;r die Helligkeit<br>
+        <code>define LED2 DMXDevice flash 14,16</code> weisse, blinkende LEDs mit einem Kanal f&uuml;r die Helligkeit und einem zweiten f&uuml;r die Blinkrate<br>
+        <code>define test1 DMXDevice simple 5</code> ein Einkanal Ger&auml;t<br>
+    </ul>
+    </ul><br>
+    <a name="DMXDeviceattributes"><b>Attributes</b></a>
+    <ul>
+        <li>IODev<br>
+          <code>attr LED1 IODev DMX0</code><br> definiert das <a href="IODev">IODev</a> f&uuml;r das Ger&auml;t</li>
+        <li>webCMD<br>
+          <code>attr LED1 webCmd rgb:rgb ff0000:rgb 00ff00:rgb 0000ff:dim:on:off</code><br> definiert ein Eingabefeld f&uuml;r die HTML Farbe, 3 Farbbuttons und einen An / AUS Schalter<br>
+          -oder-<br>
+          <code>attr LED2 webCmd dim:flash:on:off</code> definiert ein Blinkger&auml;t mit AN / AUS Schalter
+    </ul>
+
+
+</ul>
 =end html
 =cut
